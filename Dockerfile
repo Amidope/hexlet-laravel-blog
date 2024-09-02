@@ -1,9 +1,11 @@
 FROM composer
 
-#COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
-#RUN set -eux; \
-#    install-php-extensions pdo_pgsql;
+RUN set -eux; \
+    install-php-extensions  xdebug;
+
+COPY ./xdebug.ini "${PHP_INI_DIR}/conf.d"
 
 WORKDIR /app
 
